@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flat Duty Roster – October</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fff7fb;--card:#fff;--tx:#2b1b34;--mut:#8a7794;--ac:#e0479e;--ac2:#7c4dff;--ok:#1fb67a;--bad:#ef4444;--line:#f0dfe9}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#150d1c;--card:#221530;--tx:#f5eafa;--mut:#a592b3;--line:#35224a}}
+:root[data-theme=dark]{--bg:#150d1c;--card:#221530;--tx:#f5eafa;--mut:#a592b3;--line:#35224a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;z-index:0;animation:fl 14s ease-in-out infinite alternate}
+.b1{width:300px;height:300px;background:#ff8ad0;top:-80px;left:-80px}
+.b2{width:340px;height:340px;background:#9b7bff;bottom:-100px;right:-100px;animation-delay:-6s}
+@keyframes fl{to{transform:translate(60px,40px) scale(1.2)}}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:16px}
+h1{margin:6px 0 2px;font-size:28px;background:linear-gradient(90deg,var(--ac),var(--ac2),var(--ac));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200%}}
+.sub{color:var(--mut);margin:0 0 12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--tx);padding:7px 13px;border-radius:99px;cursor:pointer;font:inherit;transition:.25s}
+.chip:hover{transform:translateY(-2px)}
+.chip.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border-color:transparent;box-shadow:0 6px 16px #e0479e44}
+.days{display:flex;gap:8px;overflow-x:auto;padding:10px 2px 14px;scroll-snap-type:x proximity}
+.day{flex:0 0 auto;width:58px;padding:8px 0;text-align:center;border-radius:16px;background:var(--card);border:1px solid var(--line);cursor:pointer;scroll-snap-align:center;transition:.25s;color:var(--tx);font:inherit}
+.day small{display:block;color:var(--mut);font-size:11px}.day b{font-size:19px}
+.day.today{border-color:var(--ac)}
+.day.on{background:linear-gradient(160deg,var(--ac),var(--ac2));color:#fff;transform:scale(1.08)}
+.day.on small{color:#ffe}
+.dot{display:block;width:6px;height:6px;border-radius:50%;margin:3px auto 0;background:var(--ok);opacity:0}.day.me .dot{opacity:1}
+.head{display:flex;justify-content:space-between;align-items:end;margin:4px 0 8px}
+.head h2{margin:0;font-size:21px}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ok),#6ee7b7);transition:width .7s cubic-bezier(.2,.9,.3,1.2)}
+.card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:13px;margin-bottom:10px;opacity:0;animation:in .5s forwards;transition:.3s}
+@keyframes in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.card.mine{border-color:var(--ac);box-shadow:0 8px 22px #e0479e33}
+.card.done{opacity:.72!important}
+.card.late{border-color:var(--bad);animation:in .5s forwards,pu 1.6s 1s infinite}
+@keyframes pu{50%{box-shadow:0 0 0 5px #ef444433}}
+.ic{font-size:30px;width:48px;height:48px;display:grid;place-items:center;background:var(--bg);border-radius:14px;animation:wob 3s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-8deg) scale(1.08)}}
+.inf{flex:1;min-width:0}.inf b{display:block}.inf span{color:var(--mut);font-size:14px}
+.who{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--bg);color:var(--ac);font-weight:600;font-size:14px}
+.st{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:22px;border:2px dashed var(--line);color:var(--mut);background:none;font-family:inherit}
+.st.ok{background:var(--ok);border:0;color:#fff;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.35)}100%{transform:scale(1)}}
+button.st{cursor:pointer}button.st:hover{transform:scale(1.12)}
+select,input,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 8px;max-width:100%}
+.adm{display:none;background:var(--card);border:1px dashed var(--ac2);border-radius:18px;padding:14px;margin:14px 0;animation:in .4s forwards}
+.adm.show{display:block}
+.adm h3{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:10px}
+.grid label{font-size:12px;color:var(--mut);display:block}
+.toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translate(-50%,-150%);background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;padding:12px 18px;border-radius:16px;z-index:9;transition:.5s;box-shadow:0 10px 30px #0004;max-width:92%}
+.toast.show{transform:translate(-50%,0)}
+.note{color:var(--mut);font-size:13px;margin-top:16px;text-align:center}
+.empty{text-align:center;color:var(--mut);padding:30px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card{opacity:1}}
+.sec{margin:14px 0 8px;font-weight:700;color:var(--ac2)}.fd{animation:in .5s forwards;opacity:0}.big{animation:pop .5s}
+</style></head><body>
+<div class="blob b1"></div><div class="blob b2"></div>
+<div class="wrap">
+ <h1>🏠 Our Flat</h1>
+ <p class="sub" id="sub">Who does what, today and every day.</p>
+ <div class="row" id="me"></div>
+ <div class="row" style="margin-top:8px"><button class="chip" id="nb">🔔 Turn on reminders</button><button class="chip" id="ab" style="display:none">🔑 Admin login</button><button class="chip" id="lo" style="display:none">Log out</button></div>
+ <div class="adm" id="adm"></div>
+ <div class="row" id="mo" style="margin-top:6px"></div>
+ <div class="days" id="days"></div>
+ <div class="head"><h2 id="dt"></h2><span id="pc" class="sub" style="margin:0"></span></div>
+ <div class="bar"><i id="pb"></i></div>
+ <div id="list"></div>
+ <div class="head" style="margin-top:22px"><h2>🍲 Food ideas</h2><button class="chip" id="rb">🎲 Pick for me</button></div>
+ <div class="row" id="foods"></div>
+ <div class="head" style="margin-top:22px"><h2>📒 Meals cooked</h2></div><div id="menu"></div><p class="sub" id="pick" style="font-size:18px;margin-top:10px"></p>
+ <p class="note" id="note"></p>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const DEF={girls:["Mubina (A)","Mubina (N)","Nilufar","Ruxshona"],
+duties:[{id:"cook",name:"Ovqat qilish",en:"Cooking",time:"19:00",icon:"🍳"},
+{id:"dish",name:"Idish yuvish",en:"Washing dishes",time:"20:30",icon:"🍽️"},
+{id:"bread",name:"Non olib kelish",en:"Bringing bread",time:"17:00",icon:"🍞"},
+{id:"trash",name:"Musr tashlash",en:"Throwing trash (every 2 days)",time:"21:00",icon:"🗑️"},
+{id:"clean",name:"Uy uborkasi",en:"Cleaning the flat (weekly)",time:"12:00",icon:"🧹"}],ovr:{},done:{},foods:["Plov","Lagman","Manti","Shorva","Mastava","Dimlama","Chuchvara","Somsa","Kotlet & pyure","Makaron","Omlet","Sho'rva with chicken"]};
+const Y=2026,M=9,MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+let S=JSON.parse(JSON.stringify(DEF)),isAdmin=false,ref=null,mref=null,sel=0,my=null,adminOpen=false,t=0;
+try{my=localStorage.getItem("me")}catch(e){}
+my=my===null||my===""?null:+my;
+const cK=d=>(d-9)%4,bR=d=>[1,2,0,3][(d-9)%4];
+const pk=(c,bad)=>{for(let k=0;k<4;k++){const g=(c+k)%4;if(!bad.includes(g))return g}};
+const cl=d=>(d<11||(d-11)%7)?null:[3,0,1,2][((d-11)/7|0)%4];
+const tr=d=>d%2!=1?null:[3,2,0,1][((d-9)/2|0)%4];
+function base(d,id){if(d<9)return null;
+ if(id=="cook"||id=="dish")return cK(d);
+ if(id=="bread")return bR(d);
+ if(id=="trash")return tr(d);
+ if(id=="clean")return cl(d);return null}
+function who(d,id){const k=d+"|"+id;if(k in S.ovr)return S.ovr[k]===""?null:+S.ovr[k];return base(d,id)}
+function tasks(d){return S.duties.map(u=>({u,g:who(d,u.id),k:d+"|"+u.id})).filter(x=>x.g!==null&&S.girls[x.g]!==undefined)}
+const $=id=>document.getElementById(id);
+function today(){const n=new Date(),k=Math.round((new Date(n.getFullYear(),n.getMonth(),n.getDate())-new Date(Y,9,1))/864e5)+1;return k>=1&&k<=61?k:null}
+sel=today()||9;let mo=sel>31?1:0,meals={};
+const dl=n=>{const d=new Date(Y,9,n);return d.getDate()+" "+MN[d.getMonth()]};
+function toast(m){const e=$("toast");e.textContent=m;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),6000)}
+function save(){if(!api||!isAdmin)return;clearTimeout(t);t=setTimeout(()=>api.saveState(JSON.parse(JSON.stringify(S))).catch(e=>toast("Could not save: "+(e.code||e.message))),400)}
+function render(){renderMo();renderFoods();renderMenu();renderMe();renderDays();renderList();renderAdm()}
+function renderMe(){const e=$("me");e.innerHTML="<span class=sub style='margin:0'>I am:</span>";
+ S.girls.forEach((g,i)=>{const b=document.createElement("button");b.className="chip"+(my===i?" on":"");b.textContent=g;b.onclick=()=>{my=i;try{localStorage.setItem("me",i)}catch(x){}render()};e.appendChild(b)})}
+function renderMo(){const e=$("mo");e.innerHTML="";["October","November"].forEach((m,i)=>{const b=document.createElement("button");b.className="chip"+(mo==i?" on":"");b.textContent=m+" 2026";b.onclick=()=>{mo=i;const T=today();sel=T&&(T>31)==!!i?T:(i?32:9);render()};e.appendChild(b)})}
+function renderDays(){const e=$("days");e.innerHTML="";const T=today();
+ for(let d=mo?32:1;d<=(mo?61:31);d++){const b=document.createElement("button");b.className="day"+(d==sel?" on":"")+(d==T?" today":"")+(my!==null&&tasks(d).some(x=>x.g===my)?" me":"");
+ b.innerHTML=`<small>${WD[new Date(Y,9,d).getDay()]}</small><b>${new Date(Y,9,d).getDate()}</b><i class=dot></i>`;
+ b.onclick=()=>{sel=d;renderDays();renderList()};e.appendChild(b)}
+ const o=e.querySelector(".on");if(o)e.scrollLeft=o.offsetLeft-e.clientWidth/2+30}
+function renderList(){const T=today(),L=tasks(sel),e=$("list");
+ $("dt").textContent=`${WD[new Date(Y,9,sel).getDay()]}, ${dl(sel)}`+(sel==T?" · Today":"");
+ const dn=L.filter(x=>S.done[x.k]).length;$("pc").textContent=L.length?`${dn}/${L.length} done`:"";
+ $("pb").style.width=L.length?dn/L.length*100+"%":"0";
+ e.innerHTML="";if(!L.length){e.innerHTML="<div class=empty>🌸 No duties assigned for this day.</div>";return}
+ const nm=new Date().getHours()*60+new Date().getMinutes();let i=0;
+ L.sort((a,b)=>a.u.time.localeCompare(b.u.time));
+ const mk=x=>{const done=!!S.done[x.k],mine=my===x.g;
+  const late=(sel==T&&!done&&toMin(x.u.time)+60<nm)||(T&&sel<T&&!done);
+  const c=document.createElement("div");c.className="card"+(mine?" mine":"")+(done?" done":"")+(late?" late":"");c.style.animationDelay=(i++)*90+"ms";
+  c.innerHTML=`<div class=ic>${x.u.icon}</div><div class=inf><b>${esc(x.u.name)}</b><span>${esc(x.u.en||"")} · ⏰ ${esc(x.u.time)}</span><br><span class=who>${mine?"⭐ You · ":""}${esc(S.girls[x.g])}</span></div>`;
+  const s=document.createElement(isAdmin?"button":"div");s.className="st"+(done?" ok":"");s.textContent=done?"✓":(isAdmin?"+":"");
+  if(isAdmin){s.title="Mark done / not done";s.onclick=()=>{if(S.done[x.k])delete S.done[x.k];else S.done[x.k]=true;save();renderList()}}
+  if(x.u.id=="cook"){const m=meals[x.k],can=isAdmin||(my===x.g&&(T===null||sel<=T)),w=document.createElement("div");w.style.cssText="margin-top:8px";
+   w.innerHTML=m?`<span class=who style="background:var(--ok);color:#fff">🍲 Cooked: ${esc(m.food)}</span> `:"<span class=sub style='margin:0'>🍲 Food not chosen yet</span> ";
+   if(can){const sl=document.createElement("select");sl.innerHTML="<option value=''>"+(m?"Change food…":"What are you cooking?")+"</option>"+S.foods.map(f=>`<option>${esc(f)}</option>`).join("");
+    sl.onchange=()=>{if(sl.value)setMeal(sel,sl.value,x.g)};w.appendChild(sl)}
+   c.querySelector(".inf").appendChild(w)}
+  c.appendChild(s);e.appendChild(c)};
+ const h=t=>{const d=document.createElement("div");d.className="sec";d.textContent=t;e.appendChild(d)};
+ if(my!==null){const m=L.filter(x=>x.g===my),o=L.filter(x=>x.g!==my);
+  h(`⭐ ${S.girls[my]}, your duties on ${dl(sel)}`);
+  if(m.length)m.forEach(mk);else e.insertAdjacentHTML("beforeend","<div class=empty>🎉 Nothing for you this day. Relax!</div>");
+  if(o.length){h("👯 Other girls");o.forEach(mk)}}
+ else{h("Pick your name above to see your own duties");L.forEach(mk)}}
+function renderAdm(){const e=$("adm");e.classList.toggle("show",isAdmin&&adminOpen);if(!(isAdmin&&adminOpen))return;
+ if(e.dataset.built)return;e.dataset.built=1;
+ let h="<h3>👑 Admin panel</h3><p class=sub style='margin:0 0 8px'>Tap ＋ / ✓ on a duty card to mark it done. Changes save automatically.</p><h3>Girls</h3><div class=grid>";
+ S.girls.forEach((g,i)=>h+=`<div><label>Girl ${i+1}</label><input data-g=${i} value="${esc(g)}"></div>`);
+ h+="</div><h3>Duties & reminder time</h3><div class=grid>";
+ S.duties.forEach((u,i)=>h+=`<div><label>${u.icon} name</label><input data-n=${i} value="${esc(u.name)}"><input type=time data-t=${i} value="${u.time}" style="margin-top:4px"></div>`);
+ h+="</div><h3>🍲 Food ideas (one per line)</h3><textarea data-f=1 rows=6 style='width:100%'>"+esc(S.foods.join("\n"))+"</textarea><h3>Change who does a duty on the selected day</h3><div class=grid id=ass></div>";
+ e.innerHTML=h;
+ e.oninput=ev=>{const a=ev.target.dataset;if(a.g!==undefined)S.girls[a.g]=ev.target.value;if(a.n!==undefined)S.duties[a.n].name=ev.target.value;if(a.t!==undefined)S.duties[a.t].time=ev.target.value||"19:00";if(a.f!==undefined){S.foods=ev.target.value.split("\n").map(x=>x.trim()).filter(Boolean);renderFoods()}save();renderMe();renderList()};
+ buildAss()}
+function buildAss(){const a=$("ass");if(!a)return;a.innerHTML="";
+ S.duties.forEach(u=>{const k=sel+"|"+u.id,cur=who(sel,u.id),w=document.createElement("div");
+  w.innerHTML=`<label>${u.icon} ${esc(u.name)}</label>`;const s=document.createElement("select");
+  s.innerHTML="<option value=''>— nobody —</option>"+S.girls.map((g,i)=>`<option value=${i}${cur===i?" selected":""}>${esc(g)}</option>`).join("");
+  s.onchange=()=>{S.ovr[k]=s.value;save();renderDays();renderList()};w.appendChild(s);a.appendChild(w)})}
+const _rl=renderList;renderList=function(){_rl();buildAss()};
+function setMeal(n,food,g){meals[n]={food,g};renderList();renderMenu();if(!api)return toast("Not connected to the database.");api.setMeal(n,{n,food,g,at:Date.now()}).catch(e=>toast("Could not save: "+(e.code||e.message)))}
+function renderMenu(){const e=$("menu"),ks=Object.keys(meals).map(Number).sort((a,b)=>b-a);
+ e.innerHTML=ks.length?"":"<span class=sub>No meals logged yet. The girl who cooks picks her dish on her card.</span>";
+ ks.forEach(n=>{const m=meals[n],d=document.createElement("div");d.className="card";d.style.cssText="opacity:1;animation:none;padding:9px 13px";
+  d.innerHTML=`<div class=inf><b>${WD[new Date(Y,9,n).getDay()]} ${dl(n)} — ${esc(m.food)}</b><span>👩‍🍳 ${esc(S.girls[m.g]??"?")}</span></div><span style="font-size:22px">✅</span>`;e.appendChild(d)})}
+function renderFoods(){const e=$("foods");e.innerHTML="";S.foods.forEach((f,i)=>{const c=document.createElement("span");c.className="chip fd";c.style.animationDelay=i*50+"ms";c.textContent=f;c.onclick=()=>pickF(f);e.appendChild(c)})}
+function pickF(f){const p=$("pick");p.textContent="";p.className="sub";void p.offsetWidth;p.className="sub big";p.textContent="🍽️ Tonight: "+f+"!"}
+$("rb").onclick=()=>{if(S.foods.length)pickF(S.foods[Math.random()*S.foods.length|0])};
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function toMin(t){const[a,b]=t.split(":");return +a*60+ +b}
+/* reminders */
+$("nb").onclick=async()=>{if(!("Notification"in window)){toast("This browser can't show notifications – reminders will appear on the page.");return}
+ const p=await Notification.requestPermission();toast(p=="granted"?"🔔 Reminders on! Keep this page open in a tab.":"Notifications blocked – you'll still see banners here.");upd()};
+function upd(){$("nb").textContent=("Notification"in window&&Notification.permission=="granted")?"🔔 Reminders on":"🔔 Turn on reminders"}
+function tick(){const T=today();if(T===null||my===null)return;const n=new Date(),nm=n.getHours()*60+n.getMinutes();
+ tasks(T).filter(x=>x.g===my&&!S.done[x.k]).forEach(x=>{const tm=toMin(x.u.time);
+  [[tm-15,"in 15 minutes"],[tm,"now!"]].forEach(([at,txt])=>{const key="n|"+T+"|"+x.u.id+"|"+at;let seen=0;try{seen=localStorage.getItem(key)}catch(e){}
+   if(!seen&&nm>=at&&nm<at+20){try{localStorage.setItem(key,1)}catch(e){}
+    const m=`${x.u.icon} ${S.girls[my]}, ${x.u.name} — ${txt} (${x.u.time})`;toast(m);
+    try{if(Notification.permission=="granted")new Notification("Duty reminder",{body:m})}catch(e){}}})})}
+setInterval(()=>{tick();renderList()},30000);
+$("ab").onclick=async()=>{if(!isAdmin){const e=prompt("Admin email"),p=e&&prompt("Password");if(p)try{await api.login(e,p)}catch(x){toast("Login failed – check email/password")}}else{adminOpen=!adminOpen;renderAdm()}};
+$("lo").onclick=()=>api.logout();
+upd();render();setTimeout(tick,1500);
+let api=null;
+window.startShared=a=>{api=a;$("ab").style.display="";
+ a.onAuth(u=>{isAdmin=!!u;$("ab").textContent=isAdmin?"⚙️ Admin panel":"🔑 Admin login";$("lo").style.display=isAdmin?"":"none";if(!isAdmin)adminOpen=false;$("adm").dataset.built="";
+  $("note").textContent=isAdmin?"You're logged in as admin: only you can tick duties and edit the roster.":"Only the admin ticks duties off. Keep this page open for reminders.";render()});
+ a.onState(d=>{if(d){S=JSON.parse(JSON.stringify({girls:d.girls||DEF.girls,duties:d.duties||DEF.duties,ovr:d.ovr||{},done:d.done||{},foods:d.foods||DEF.foods}))}
+  if(!$("adm").contains(document.activeElement))$("adm").dataset.built="";render()});
+ a.onMeals(L=>{meals={};L.forEach(v=>{if(v&&v.n)meals[v.n]={food:v.food,g:v.g}});renderList();renderMenu()})};
+</script><script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getFirestore,doc,collection,onSnapshot,setDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+/* ====== PASTE YOUR FIREBASE CONFIG HERE ====== */
+const ADMIN_EMAIL="azimjonovanilufar44@gmail.com"; /* only this email gets the admin panel */
+const firebaseConfig={apiKey:"PASTE_API_KEY",authDomain:"PASTE",projectId:"PASTE",appId:"PASTE"};
+/* ============================================= */
+if(firebaseConfig.apiKey.startsWith("PASTE")){document.getElementById("note").textContent="⚠️ Firebase is not set up yet – showing the default roster only."}
+else{const app=initializeApp(firebaseConfig),db=getFirestore(app),au=getAuth(app);
+window.startShared({
+ onAuth:f=>onAuthStateChanged(au,u=>f(u&&u.email&&u.email.toLowerCase()===ADMIN_EMAIL.toLowerCase()?u:null)),login:(e,p)=>signInWithEmailAndPassword(au,e,p),logout:()=>signOut(au),
+ onState:f=>onSnapshot(doc(db,"app","state"),s=>f(s.exists()?s.data():null)),
+ saveState:d=>setDoc(doc(db,"app","state"),d).catch(e=>alert("Could not save: "+e.code)),
+ onMeals:f=>onSnapshot(collection(db,"meals"),q=>f(q.docs.map(d=>d.data()))),
+ setMeal:(n,o)=>setDoc(doc(db,"meals","m"+n),o).catch(e=>alert("Could not save: "+e.code))})}
+</script>
+</body></html>
